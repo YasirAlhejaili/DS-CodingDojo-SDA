@@ -1,0 +1,58 @@
+---
+title: "R Markdown For LP Brewery's"
+author: "Yasir"
+date: "14/110/2020"
+output: html_document
+---
+
+#Libraries:
+
+```{r message=FALSE, warning=FALSE}
+library(lpSolve)
+library(rmarkdown)
+```
+
+```{r message=FALSE, warning=FALSE}
+f.obj <- matrix(c(13,
+           23,
+           30))
+f.obj
+```
+
+```{r message=FALSE, warning=FALSE}
+f.con <- matrix(c(5,4,35,
+                  15,4,20,
+                  10,4,15), nrow = 3, byrow = TRUE)
+f.con
+```
+
+```{r message=FALSE, warning=FALSE}
+f.dir <- c("<=",
+           "<=",
+           "<=")
+f.dir
+```
+
+```{r message=FALSE, warning=FALSE}
+f.rhs <- c(80,     
+           40,     
+           20)
+f.rhs
+```
+
+```{r message=FALSE, warning=FALSE}
+sol<-lp("max", f.obj, f.con, f.dir, f.rhs, compute.sens = TRUE)
+sol
+```
+
+```{r message=FALSE, warning=FALSE}
+sol$objval
+```
+
+```{r message=FALSE, warning=FALSE}
+sol$solution
+```
+
+```{r message=FALSE, warning=FALSE}
+sol$duals
+```
